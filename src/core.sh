@@ -105,17 +105,12 @@ change_list=(
     "更改用户名 (Username)"
 )
 servername_list=(
-    www.amazon.com
-    www.ebay.com
-    www.paypal.com
-    www.cloudflare.com
-    dash.cloudflare.com
-    aws.amazon.com
+    apple.com
 )
 
 is_random_ss_method=${ss_method_list[$(shuf -i 4-6 -n1)]}     # random only use ss2022
 is_random_header_type=${header_type_list[$(shuf -i 1-5 -n1)]} # random dont use none
-is_random_servername=${servername_list[$(shuf -i 0-${#servername_list[@]} -n1) - 1]}
+is_random_servername='apple.com'
 
 msg() {
     echo -e "$@"
@@ -1519,7 +1514,7 @@ info() {
         get info $1
     fi
     # is_color=$(shuf -i 41-45 -n1)
-    is_color=44
+    is_color=
     case $net in
     tcp | kcp | quic)
         is_can_change=(0 1 5 7)
