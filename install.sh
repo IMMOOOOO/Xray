@@ -18,7 +18,7 @@ _cyan() { echo -e ${cyan}$@${none}; }
 _green() { echo -e ${green}$@${none}; }
 _yellow() { echo -e ${yellow}$@${none}; }
 _magenta() { echo -e ${magenta}$@${none}; }
-_red_bg() { echo -e "\e[41m$@${none}"; }
+_red_bg() { echo -e "${red}$@${none}"; }
 
 is_err=$(_red_bg 错误!)
 is_warn=$(_red_bg 警告!)
