@@ -106,7 +106,7 @@ done
 
 # load bash script.
 load() {
-    。 $is_sh_dir/src/$1
+    . $is_sh_dir/src/$1
 }
 
 # wget add --no-check-certificate
