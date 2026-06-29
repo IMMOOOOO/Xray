@@ -1537,7 +1537,7 @@ info() {
         }
         is_info_str=($is_protocol $is_addr "$is_tmp_port" $uuid $net $is_info_header_type $kcp_seed)
         if [[ $is_reality ]]; then
-            is_color=41
+            is_color=
             is_can_change=(0 1 5 10 11)
             is_info_show=(0 1 2 3 15 8 16 17 18)
             is_info_str=($is_protocol $is_addr $port $uuid xtls-rprx-vision reality $is_servername "chrome" $is_public_key)
@@ -1551,7 +1551,7 @@ info() {
         is_info_str=($is_protocol $is_addr $port $ss_password $ss_method)
         ;;
     ws | h2 | grpc | xhttp)
-        is_color=45
+        is_color=
         is_can_change=(0 1 2 3 5)
         is_info_show=(0 1 2 3 4 6 7 8)
         is_url_path=path
@@ -1599,14 +1599,14 @@ info() {
         else
             tt='\t\t'
         fi
-        msg "$a $tt= \e[${is_color}m${is_info_str[$i]}\e[0m"
+        msg "$a $tt= ${is_info_str[$i]}"
     done
     if [[ $is_new_install ]]; then
         warn "首次安装请查看脚本帮助文档: $(msg_ul https://233boy.com/$is_core/$is_core-script/)"
     fi
     if [[ $is_url ]]; then
         msg "------------- ${info_list[12]} -------------"
-        msg "\e[4;${is_color}m${is_url}\e[0m"
+        msg_ul "${is_url}"
     fi
     if [[ $is_no_auto_tls ]]; then
         is_tmp_path=$path
@@ -1639,7 +1639,7 @@ url_qr() {
     if [[ $is_url ]]; then
         [[ $1 == 'url' ]] && {
             msg "\n------------- $is_config_name & URL 链接 -------------"
-            msg "\n\e[${is_color}m${is_url}\e[0m\n"
+            msg "\n${is_url}\n"
             footer_msg
         } || {
             link="https://233boy.github.io/tools/qr.html#${is_url}"
@@ -1656,7 +1656,7 @@ url_qr() {
             fi
             msg
             msg "如果无法正常显示或识别, 请使用下面的链接来生成二维码:"
-            msg "\n\e[4;${is_color}m${link}\e[0m\n"
+            msg "\n${link}\n"
             footer_msg
         }
     else
