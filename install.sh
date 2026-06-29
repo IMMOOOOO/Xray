@@ -1,6 +1,6 @@
 #!/bin/bash
 
-author=233boy
+author=IMMOOOOO
 # github=https://github.com/233boy/xray
 
 # bash fonts colors
@@ -80,7 +80,7 @@ is_conf_dir=$is_core_dir/conf
 is_log_dir=/var/log/$is_core
 is_sh_bin=/usr/local/bin/$is_core
 is_sh_dir=$is_core_dir/sh
-is_sh_repo=$author/$is_core
+is_sh_repo=IMMOOOOO/Xray
 is_pkg="wget unzip"
 is_config_json=$is_core_dir/config.json
 tmp_var_lists=(
@@ -106,7 +106,7 @@ done
 
 # load bash script.
 load() {
-    . $is_sh_dir/src/$1
+    。 $is_sh_dir/src/$1
 }
 
 # wget add --no-check-certificate
