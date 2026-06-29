@@ -349,8 +349,8 @@ create() {
         is_listen='listen:"0.0.0.0"'
         [[ $host ]] && is_listen=${is_listen/0.0.0.0/127.0.0.1}
         is_sniffing='sniffing:{enabled:true,destOverride:["http","tls"]}'
-        [[ $is_protocol == 'dokodemo-door' ]] && is_sniffing='sniffing:{enabled:false}'
         [[ $is_reality ]] && is_sniffing='sniffing:{enabled:true,destOverride:["http","tls"],routeOnly:true}'
+        [[ $is_protocol == 'dokodemo-door' ]] && is_sniffing='sniffing:{enabled:false}'
         is_new_json=$(jq '{inbounds:[{tag:"'$is_config_name'",port:'"$port"','"$is_listen"',protocol:"'$is_protocol'",'"$json_str"','"$is_sniffing"'}]}' <<<{})
         if [[ $is_dynamic_port ]]; then
             [[ ! $is_dynamic_port_range ]] && get dynamic-port
@@ -427,7 +427,7 @@ create() {
         is_ban_bt='{type:"field",protocol:["bittorrent"],marktag:"ban_bt",outboundTag:"block"}'
         is_ban_cn='{type:"field",ip:["geoip:cn"],marktag:"ban_geoip_cn",outboundTag:"block"}'
         is_openai='{type:"field",domain:["geosite:openai"],marktag:"fix_openai",outboundTag:"direct"}'
-        is_routing='routing:{domainStrategy:"IPIfNonMatch",rules:[{type:"field",inboundTag:["api"],outboundTag:"api"},'"$is_ban_bt"','"$is_ban_cn"','"$is_openai"',{type:"field",ip:["geoip:private"],outboundTag:"block"}]}'
+        is_routing='routing:{domainStrategy:"IPIfNonMatch",rules:[{type:"field",inboundTag:["api"],outboundTag:"api"},'\"$is_ban_bt\"','\"$is_openai\"',{type:"field",ip:["geoip:private"],outboundTag:"block"}]}'
         is_inbounds='inbounds:[{tag:"api",port:'"$tmp_port"',listen:"127.0.0.1",protocol:"dokodemo-door",settings:{address:"127.0.0.1"}}]'
         is_outbounds='outbounds:[{tag:"direct",protocol:"freedom"},{tag:"block",protocol:"blackhole"}]'
         is_server_config_json=$(jq '{'"$is_log"','"$is_dns"','"$is_api"','"$is_stats"','"$is_policy"','"$is_routing"','"$is_inbounds"','"$is_outbounds"'}' <<<{})
